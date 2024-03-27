@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+// import assets from './assets/images';
 
 function Leaderboard() {
     const [leaderboard, setLeaderboard] = useState([])
@@ -26,9 +27,12 @@ function Leaderboard() {
                         }}>
                             <h2 style={{ fontSize: '24px', color: '#666', marginBottom: '5px' }}>{college.name}</h2>
                             <p style={{ fontSize: '18px', color: '#999' }}>{college.points} points</p>
+
                         </div>
                     ))
                 }
+                console.log(`${process.env.PUBLIC_URL}/assets/images/college-flags/BF.png`);
+                <img src={`${process.env.PUBLIC_URL}/assets/images/college-flags/BF.png`} alt="What" />
             </div>
 
     );
