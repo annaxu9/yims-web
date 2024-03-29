@@ -1,9 +1,7 @@
 import './App.css';
 import { Route, Routes, Link } from 'react-router-dom';
 import { Home } from './pages/Home';
-import { BookList } from './pages/BookList';
-import { Book } from './pages/Book';
-import Leaderboard from './components/Leaderboard';
+import { Admin } from './pages/Admin';
 import './assets/fonts/fonts.css';
 
 function App() {
@@ -11,7 +9,6 @@ function App() {
     <div className="w-full">
       <nav>
         <div className='flex gap-2 m-2'>
-          {/* <img src={logo} alt="Logo" className="w-14 h-14"/>  */}
           <ul className='flex row bg-[#2B2C2D] text-white items-center w-full rounded-lg'>
             <li className="relative bg-[#3159C4] p-2 font-black text-4xl rounded-lg">
               <div className="absolute top-0 left-3 h-full w-full bg-gradient-to-r from-[#3159C4] to-[#3159C4] -skew-x-12"></div>
@@ -35,13 +32,13 @@ function App() {
             </li>
             <div className='flex row gap-3 ml-10 flex-grow'>
             <li>
-              <Link to="/pastgames">Past Games</Link>
+              <Link to="/scores">Scores</Link>
             </li>
             <li>
-              <Link to="/upcominggames">Upcoming Games</Link>
+              <Link to="/schedules">Schedules</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/admin">Admin</Link>
             </li>
             </div>
             <li className='p-2'>
@@ -52,10 +49,8 @@ function App() {
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/books" element={<BookList />}/>
-        <Route path="/books/:id" element={<Book />}/>
+        <Route path="/admin" element={<Admin />} />
       </Routes>
-      <Leaderboard />
     </div>
   );
 }
