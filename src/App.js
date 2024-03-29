@@ -4,8 +4,6 @@ import { Home } from './pages/Home';
 import { BookList } from './pages/BookList';
 import { Book } from './pages/Book';
 import Leaderboard from './components/Leaderboard';
-import logo from './assets/images/logo.png';
-import profile from './assets/images/profile-icon-white.png';
 import './assets/fonts/fonts.css';
 
 function App() {
@@ -47,11 +45,10 @@ function App() {
             </li>
             </div>
             <li className='p-2'>
-              <img src={profile} alt="Logo" className="w-7 h-7 mr-2"/>
+              <img src="/images/profile-icon-white.png" alt="Logo" className="w-7 h-7 mr-2"/>
             </li>
           </ul>
         </div>
-
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
