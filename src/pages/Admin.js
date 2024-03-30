@@ -1,11 +1,9 @@
 import UpcomingCalendar from '../components/UpcomingCalendar';
 
-function Admin() {
+export default function Admin() {
   return (
     <div>
       <UpcomingCalendar />
     </div>
   );
 }  
-
-export { Admin }; 

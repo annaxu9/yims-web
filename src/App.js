@@ -1,59 +1,82 @@
-import './App.css';
-import { Route, Routes, Link } from 'react-router-dom';
-import { Home } from './pages/Home';
-import { Admin } from './pages/Admin';
-import './assets/fonts/fonts.css';
+// App.js
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import Login from './components/Login';
+import Home from './pages/Home'; 
+import Profile from './pages/Profile';
+import NavBar from './components/NavBar'; 
+import Admin from './pages/Admin';
+import Ref from './pages/Ref';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
-  return(
-    <div className="w-full">
-      <nav>
-        <div className='flex gap-2 m-2'>
-          <ul className='flex row bg-[#2B2C2D] text-white items-center w-full rounded-lg'>
-            <li className="relative bg-[#3159C4] p-2 font-black text-4xl rounded-lg">
-              <div className="absolute top-0 left-3 h-full w-full bg-gradient-to-r from-[#3159C4] to-[#3159C4] -skew-x-12"></div>
-              <Link
-                to="/"
-                className="relative z-10 text-4xl font-bold bg-clip-text text-[#FFCA28] pl-2"
-                style={{ fontFamily: 'SFSportsNight' }}
-              >
-               YIMS 
-              </Link>
-            </li>
-            <li className="relative bg-[#3159C4] py-2 font-black text-4xl">
-              <div className="absolute top-0 left-3 h-full w-full bg-gradient-to-r from-[#254394] to-[#254394] -skew-x-12"></div>
-              <Link
-                to="/"
-                className="relative z-10 text-4xl font-bold bg-clip-text text-transparent text-[#FFCA28]"
-                style={{ fontFamily: 'SFSportsNight' }}
-              >
-                 &nbsp;
-              </Link>
-            </li>
-            <div className='flex row gap-3 ml-10 flex-grow'>
-            <li>
-              <Link to="/scores">Scores</Link>
-            </li>
-            <li>
-              <Link to="/schedules">Schedules</Link>
-            </li>
-            <li>
-              <Link to="/admin">Admin</Link>
-            </li>
-            </div>
-            <li className='p-2'>
-              <img src="/images/profile-icon-white.png" alt="Logo" className="w-7 h-7 mr-2"/>
-            </li>
-          </ul>
-        </div>
-      </nav>
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  console.log(user)
+
+  useEffect(() => {
+    // Retrieve user data from localStorage when the component mounts
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      setUser(JSON.parse(userData));
+    }
+  }, []);
+
+  const handleLogin = async (netid) => {
+    const response = await fetch(`http://127.0.0.1:5000/api/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ netid }),
+    });
+    if (response.ok) {
+      const userData = await response.json();
+      setUser(userData);
+      // Save user data to localStorage
+      localStorage.setItem('user', JSON.stringify(userData));
+      navigate('/');  // Navigate to the home page
+    } else {
+      console.log(netid)
+      // Handle login failure
+      alert('Login failed');
+    }
+  };
+
+  const handleLogout = () => {
+    // Clear user data from state and localStorage
+    setUser(null);
+    localStorage.removeItem('user');
+    navigate('/login');  // Navigate to the login page
+  };
+
+  return (
+    <div>
+      <NavBar role={user ? user.role : null}/>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/" element={user ? <Home user={user} onLogout={handleLogout} /> : <Login onLogin={handleLogin} />} />
+        <Route path="/profile" element={<Profile user={user} onLogout={handleLogout} />} />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute user={user} allowedRoles={['admin']}>
+              <Admin />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/ref"
+          element={
+            <ProtectedRoute user={user} allowedRoles={['admin', 'ref']}>
+              <Ref />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </div>
   );
 }
 
 export default App;
-

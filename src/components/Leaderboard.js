@@ -27,10 +27,10 @@ function Leaderboard() {
                         {leaderboard.map((college, index) => (
                             <tr key={index} className={`text-gray-700 text-sm ${index % 2 === 0 ? 'bg-gray-50' : 'bg-gray-100'}`}>
                                 <td className="p-3">{index + 1}</td>
-                                <div className="flex justify-center items-center">
-                                    <td className="p-3">{college.name}</td>
+                                <td className="flex justify-center items-center">
+                                    <p className="p-3">{college.name}</p>
                                     <img src={`/images/college-flags/${college.abbreviation}.png`} alt={college.name} className="h-6 inline-block" />
-                                </div>
+                                </td>
                                 <td className="p-3">{college.points} points</td>
                             </tr>
                         ))}
