@@ -1,0 +1,40 @@
+.custom-calendar {
+    width: calc(100px * 7); /* Adjust the width based on the number of tiles and their width */
+    margin: 0 auto; /* Center the calendar */
+  }
+  
+  @media (min-width: 768px) {
+    .custom-calendar {
+      width: 90%; /* Adjust the width for larger screens */
+    }
+  }
+  
+/* MatchCalendar.css */
+.react-calendar__tile {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #e0e0e0 !important;  /* Ensure this rule is applied */
+    position: relative;
+    padding-top: 5px; /* Add some space at the top for the day number */
+  }
+  
+  .react-calendar__tile--active {
+    background-color: #f0f8ff; /* Highlight the selected tile */
+  }
+  
+  .react-calendar__month-view__days__day--weekend {
+    color: #000; /* Change the color of weekend days */
+  }
+  
+  .react-calendar__tile abbr {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 0.75em;
+  }
+  
+  .clock-icon {
+    /* color: transparent; */
+    border: 1px solid black;
+    -webkit-text-stroke: 2px black; /* Adjust the stroke width as needed */
+  }

@@ -3,17 +3,17 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Login from './components/Login';
 import Home from './pages/Home'; 
+import Schedule from './pages/Schedule';
 import Profile from './pages/Profile';
 import NavBar from './components/NavBar'; 
 import Admin from './pages/Admin';
 import Ref from './pages/Ref';
 import ProtectedRoute from './components/ProtectedRoute';
+import Test from './pages/test';
 
 function App() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
-
-  console.log(user)
 
   useEffect(() => {
     // Retrieve user data from localStorage when the component mounts
@@ -57,6 +57,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/" element={user ? <Home user={user} onLogout={handleLogout} /> : <Login onLogin={handleLogin} />} />
+        <Route path="/schedules" element={<Schedule/>} />
         <Route path="/profile" element={<Profile user={user} onLogout={handleLogout} />} />
         <Route
           path="/admin"
@@ -74,6 +75,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/test" element={<Test />} />
       </Routes>
     </div>
   );
