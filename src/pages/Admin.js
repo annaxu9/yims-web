@@ -7,7 +7,7 @@ export default function Admin() {
     const [selectedSport, setSelectedSport] = useState('');
 
     useEffect(() => {
-        fetch('http://127.0.0.1:5000/api/sports')
+        fetch('http://127.0.0.1:5000/sports')
             .then(response => response.json())
             .then(data => {
                 setSports(data);

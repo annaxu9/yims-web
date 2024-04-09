@@ -24,7 +24,7 @@ function App() {
   }, []);
 
   const handleLogin = async (netid) => {
-    const response = await fetch(`http://127.0.0.1:5000/api/login`, {
+    const response = await fetch(`http://127.0.0.1:5000/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -38,7 +38,6 @@ function App() {
       localStorage.setItem('user', JSON.stringify(userData));
       navigate('/');  // Navigate to the home page
     } else {
-      console.log(netid)
       // Handle login failure
       alert('Login failed');
     }

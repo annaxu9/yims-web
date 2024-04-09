@@ -23,48 +23,49 @@ export function shuffleArray(array) {
     const numTeams = teams.length;
 
     // Generate the schedule
-    for (let round = 0; round < teams.length - 1; round++) {
+    for (let round = 0; round < numTeams - 1; round++) {
       let matches = [];
-      for (let i = 0; i < teams.length / 2; i++) {
-        const team1 = teams[i];
-        const team2 = teams[teams.length - 1 - i];
-        if (team1 && team2) { // Exclude matches with the dummy team
-          matches.push({ team1, team2 });
+      for (let i = 0; i < numTeams / 2; i++) {
+        const college1 = teams[i];
+        const college2 = teams[numTeams - 1 - i];
+        if (college1 !== college2) { // Ensure teams are not matched against themselves
+          matches.push({ college1, college2 });
         }
       }
       schedule.push(matches);
-  
+
       // Rotate the teams
       teams.splice(1, 0, teams.pop());
     }
-  
+
     return schedule;
   }
+
 
   export function fillScheduleDetails(schedule) {
     // Example pattern for dates, times, and locations
     const details = [
-        { date: '2023-01-29', time: '20:00', location: 'The Whale' },
-        { date: '2023-01-29', time: '21:00', location: 'The Whale' },
-        { date: '2023-01-29', time: '22:00', location: 'The Whale' },
-        { date: '2023-01-30', time: '21:00', location: 'The Whale' },
-        { date: '2023-01-30', time: '22:00', location: 'The Whale' },
-        { date: '2023-02-01', time: '20:00', location: 'The Whale' },
-        { date: '2023-02-04', time: '17:00', location: 'The Whale' },
-        { date: '2023-02-04', time: '18:00', location: 'The Whale' },
-        { date: '2023-02-04', time: '19:00', location: 'The Whale' },
-        { date: '2023-02-05', time: '20:00', location: 'The Whale' },
-        { date: '2023-02-05', time: '21:00', location: 'The Whale' },
-        { date: '2023-02-05', time: '22:00', location: 'The Whale' },
-        { date: '2023-02-08', time: '20:00', location: 'The Whale' },
-        { date: '2023-02-08', time: '21:00', location: 'The Whale' },
-        { date: '2023-02-08', time: '22:00', location: 'The Whale' },
-        { date: '2023-02-12', time: '20:00', location: 'The Whale' },
-        { date: '2023-02-12', time: '21:00', location: 'The Whale' },
-        { date: '2023-02-12', time: '22:00', location: 'The Whale' },
-        { date: '2023-02-18', time: '17:00', location: 'The Whale' },
-        { date: '2023-02-18', time: '18:00', location: 'The Whale' },
-        { date: '2023-02-18', time: '19:00', location: 'The Whale' }
+        { date: '2024-01-29', start_time: '20:00', location: 'The Whale' },
+        { date: '2024-01-29', start_time: '21:00', location: 'The Whale' },
+        { date: '2024-01-29', start_time: '22:00', location: 'The Whale' },
+        { date: '2024-01-30', start_time: '21:00', location: 'The Whale' },
+        { date: '2024-01-30', start_time: '22:00', location: 'The Whale' },
+        { date: '2024-02-01', start_time: '20:00', location: 'The Whale' },
+        { date: '2024-02-04', start_time: '17:00', location: 'The Whale' },
+        { date: '2024-02-04', start_time: '18:00', location: 'The Whale' },
+        { date: '2024-02-04', start_time: '19:00', location: 'The Whale' },
+        { date: '2024-02-05', start_time: '20:00', location: 'The Whale' },
+        { date: '2024-02-05', start_time: '21:00', location: 'The Whale' },
+        { date: '2024-02-05', start_time: '22:00', location: 'The Whale' },
+        { date: '2024-02-08', start_time: '20:00', location: 'The Whale' },
+        { date: '2024-02-08', start_time: '21:00', location: 'The Whale' },
+        { date: '2024-02-08', start_time: '22:00', location: 'The Whale' },
+        { date: '2024-02-12', start_time: '20:00', location: 'The Whale' },
+        { date: '2024-02-12', start_time: '21:00', location: 'The Whale' },
+        { date: '2024-02-12', start_time: '22:00', location: 'The Whale' },
+        { date: '2024-02-18', start_time: '17:00', location: 'The Whale' },
+        { date: '2024-02-18', start_time: '18:00', location: 'The Whale' },
+        { date: '2024-02-18', start_time: '19:00', location: 'The Whale' }
       ];
   
     // Assign details to each match in the schedule

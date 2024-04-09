@@ -70,10 +70,10 @@ function BracketGeneration() {
                   'Content-Type': 'application/json',
               },
               body: JSON.stringify({
-                  college_1: match.college1,
-                  college_2: match.college2,
+                  college1: match.college1,
+                  college2: match.college2,
                   date: match.date,
-                  start_time: match.time,
+                  start_time: match.start_time,
                   location: match.location,
                   sport: selectedSport
               }),
@@ -116,10 +116,11 @@ function BracketGeneration() {
           const combinedSchedule = [...greenSchedule, ...blueSchedule].flat();
           const scheduleWithDetails = combinedSchedule.map(match => ({
             date: '', // Blank field for date
-            time: '', // Blank field for time
+            start_time: '', // Blank field for time
             location: '', // Blank field for location
-            college1: match.team1,
-            college2: match.team2
+            college1: match.college1,
+            college2: match.college2,
+            sport: selectedSport
           }));
           setSchedule(scheduleWithDetails);
         }
@@ -180,7 +181,7 @@ function BracketGeneration() {
                               
                           </td>
                           <td className="border border-gray-300 p-2">
-                              <input type="time" className="w-40 p-2 border border-gray-300 rounded-md" value={match.time} onChange={(e) => handleScheduleChange(e, index, 'time')} />
+                              <input type="time" className="w-40 p-2 border border-gray-300 rounded-md" value={match.start_time} onChange={(e) => handleScheduleChange(e, index, 'time')} />
                           </td>
                           <td className="border border-gray-300 p-2">
                               <input type="text" className="w-40 p-2 border border-gray-300 rounded-md" value={match.location} onChange={(e) => handleScheduleChange(e, index, 'location')} />
