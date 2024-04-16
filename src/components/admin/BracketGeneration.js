@@ -22,8 +22,8 @@ const colleges = [
 ];
 
 const sports = [
-    "soccer", "flag football", "spikeball", "cornhole", "pickleball", "ping pong",
-    "w-hoops", "m-hoops", "c-hoops", "dodgeball", "broomball", "indoor soccer", "volleyball", "badminton"
+    "Soccer", "Flag Football", "Spikeball", "Cornhole", "Pickleball", "Ping Pong",
+    "W-Hoops", "M-Hoops", "C-Hoops", "Dodgeball", "Broomball", "Indoor Soccer", "Volleyball", "Badminton"
   ];
   
 
@@ -70,6 +70,7 @@ function BracketGeneration() {
                   'Content-Type': 'application/json',
               },
               body: JSON.stringify({
+                  id: match.id,
                   college1: match.college1,
                   college2: match.college2,
                   date: match.date,

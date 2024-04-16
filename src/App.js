@@ -10,10 +10,14 @@ import Admin from './pages/Admin';
 import Ref from './pages/Ref';
 import ProtectedRoute from './components/ProtectedRoute';
 import Test from './pages/test';
+import Test2 from './pages/test2';
+
+
 
 function App() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+
 
   useEffect(() => {
     // Retrieve user data from localStorage when the component mounts
@@ -75,6 +79,7 @@ function App() {
           }
         />
         <Route path="/test" element={<Test />} />
+        <Route path="/test2" element={<Test2 />} />
       </Routes>
     </div>
   );

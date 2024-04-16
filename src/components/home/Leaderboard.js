@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import trophy from "../../assets/icons/trophy.png";
 
 function Leaderboard() {
     const [leaderboard, setLeaderboard] = useState([])
@@ -12,12 +13,13 @@ function Leaderboard() {
       }, []);
 
     return (
-        <div className="text-center mx-auto max-w-lg bg-gray-100 p-5 rounded-lg shadow-lg">
-            <h1 className="text-gray-800 text-2xl font-bold mb-5">Standings</h1>
+        <div className="text-center mx-auto max-w-lg border-4 border-[#4267E6] p-5 rounded-lg">
+            <h1 className="text-[#4267E6] text-2xl font-bold mb-5">Standings</h1>
+            <img src={trophy} alt="trophy" className="h-64 mx-auto" />
             <div className="overflow-x-auto">
                 <table className="w-full">
                     <thead>
-                        <tr className="bg-gray-200 text-gray-600 text-sm font-semibold">
+                        <tr className="text-[#4267E6] text-sm font-semibold">
                             <th className="p-3">Rank</th>
                             <th className="p-3">College</th>
                             <th className="p-3">Points</th>
@@ -25,7 +27,7 @@ function Leaderboard() {
                     </thead>
                     <tbody>
                         {leaderboard.map((college, index) => (
-                            <tr key={index} className={`text-gray-700 text-sm ${index % 2 === 0 ? 'bg-gray-50' : 'bg-gray-100'}`}>
+                            <tr key={index} className={`text-gray-700 text-sm`}>
                                 <td className="p-3">{index + 1}</td>
                                 <td className="flex justify-center items-center">
                                     <p className="p-3">{college.name}</p>

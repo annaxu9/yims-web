@@ -1,6 +1,13 @@
 // NavBar.js
 import { Link } from 'react-router-dom';
 import fonts from '../assets/fonts/fonts.css';
+import star from '../assets/icons/star.png';
+import calendar from '../assets/icons/calendar.png';
+import users from '../assets/icons/users.png';
+import bracket from '../assets/icons/bracket.png';
+import refFlag from '../assets/icons/ref-flag.png';
+import user from '../assets/icons/user.png';
+
 
 function NavBar({ role }) {
   const renderLinks = () => {
@@ -9,16 +16,35 @@ function NavBar({ role }) {
         return (
           <>
             <li>
-              <Link to="/scores">Scores</Link>
+              <Link to="/scores" className='flex items-center'>
+                Scores
+                <img src={star} alt="" className="w-5 h-5 ml-2"/>
+              </Link>
             </li>
             <li>
-              <Link to="/schedules">Schedules</Link>
+              <Link to="/schedules" className='flex items-center'>
+                Schedules
+                <img src={calendar} alt="Lgo" className="w-5 h-5 ml-2"/>
+              </Link>
             </li>
             <li>
-                <Link to="/ref">Referee</Link>
+                <Link to="/ref" className='flex items-center'>
+                  Referee
+                  <img src={refFlag} alt="" className="w-6 h-5 ml-2"/>
+                </Link>
             </li>
             <li>
-              <Link to="/admin">Admin</Link>
+              <Link to="/admin" className='flex items-center'>
+                Create Brackets
+                <img src={bracket} alt="" className="w-5 h-5 ml-2"/>
+              </Link>
+              
+            </li>
+            <li>
+              <Link to="/users" className='flex items-center'>
+                Users
+                <img src={users} alt="" className="w-6 h-5 ml-2"/>
+              </Link>
             </li>
           </>
         );
@@ -54,23 +80,23 @@ function NavBar({ role }) {
 
   return (
     <nav>
-      <div className='flex gap-2 m-2'>
-        <ul className='flex row bg-[#2B2C2D] text-white items-center w-full rounded-lg'>
-          <li className="relative bg-[#3159C4] p-2 font-black text-4xl rounded-lg">
-            <div className="absolute top-0 left-3 h-full w-full bg-gradient-to-r from-[#3159C4] to-[#3159C4] -skew-x-12"></div>
+      <div className='flex gap-2 m-5'>
+        <ul className='flex row bg-[#4267E6] text-white items-center w-full rounded-lg font-medium'>
+          <li className="relative bg-[#4267E6] p-2 font-black text-4xl rounded-lg">
+            <div className="absolute top-0 left-3 h-full w-full bg-gradient-to-r from-[#4267E6] to-[#4267E6] -skew-x-12"></div>
             <Link
               to="/"
-              className="relative z-10 text-4xl font-bold bg-clip-text text-[#FFCA28] pl-2"
+              className="relative z-10 text-4xl font-bold bg-clip-text text-[#FFD65F] pl-2"
               style={{ fontFamily: 'SFSportsNight' }}
             >
               YIMS 
             </Link>
           </li>
-          <li className="relative bg-[#3159C4] py-2 font-black text-4xl">
-            <div className="absolute top-0 left-3 h-full w-full bg-gradient-to-r from-[#254394] to-[#254394] -skew-x-12"></div>
+          <li className="relative bg-[#4267E6] py-2 font-black text-4xl">
+            <div className="absolute top-0 left-3 h-full w-full bg-gradient-to-r from-white to-white -skew-x-12"></div>
             <Link
               to="/"
-              className="relative z-10 text-4xl font-bold bg-clip-text text-transparent text-[#FFCA28]"
+              className="relative z-10 text-4xl font-bold bg-clip-text text-transparent text-[#F7CC4F]"
               style={{ fontFamily: 'SFSportsNight' }}
             >
               &nbsp;
@@ -81,7 +107,7 @@ function NavBar({ role }) {
           </div>
           <li className='p-2'>
             <Link to="/profile"> 
-              <img src="/images/profile-icon-white.png" alt="Logo" className="w-7 h-7 mr-2"/>
+            <img src={user} alt="" className="w-7 h-7 mr-2"/>
             </Link>
           </li>
         </ul>
