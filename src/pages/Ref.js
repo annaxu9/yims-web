@@ -23,11 +23,19 @@ export default function Ref() {
     const [selectedMatch, setSelectedMatch] = useState(null);
 
     useEffect(() => {
-        fetch('http://127.0.0.1:5000/past-unscored-matches')
-            .then(response => response.json())
+        const url = 'http://127.0.0.1:5000/matches?time_filter=past&score_filter=unscored';
+
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => setMatches(data))
             .catch(error => console.error('Error fetching matches:', error));
     }, []);
+    
 
     const updateMatchScore = (matchId, college1Outcome, college2Outcome) => {
         const outcomeToScore = {
@@ -77,7 +85,7 @@ export default function Ref() {
                             <td className="p-2 border-b">{new Date(match.date).toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: 'numeric' })}</td>
                             <td className="p-2 border-b">{`${match.college1} vs ${match.college2}`}</td>
                             <td className="p-2 border-b">{match.sport} {sportsData[match.sport].emoji}</td>
-                            <td className="p-2 border-b">{match.college_pts1 === -1 ? 'Unscored' : `${match.college_pts1} - ${match.college_pts2}`}</td>
+                            <td className="p-2 border-b">{match.college_pts1 === 0 ? 'Unscored' : `${match.college_pts1} - ${match.college_pts2}`}</td>
                             <td className="p-2 border-b">{match.ref || 'N/A'}</td>
                         </tr>
                     ))}

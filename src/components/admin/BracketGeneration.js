@@ -34,10 +34,10 @@ function BracketGeneration() {
     const [badMatchIndices, setBadMatchIndices] = useState([]);
     const [isScheduleValidated, setIsScheduleValidated] = useState(false);
 
-    console.log(badMatchIndices)
-
+    console.log(schedule)
+ 
     const validateSchedule = async () => {
-      const badMatchIndices = await validateScheduleAPI();
+      const badMatchIndices = await validateScheduleAPI(schedule);
       setBadMatchIndices(badMatchIndices);
       if (badMatchIndices.length === 0) {
           setIsScheduleValidated(true); // Set the validation state to true only if there are no bad matches
@@ -45,22 +45,30 @@ function BracketGeneration() {
     };
   
 
-    const validateScheduleAPI = async () => {
-      const response = await fetch('http://127.0.0.1:5000/validate_matches', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(schedule),
-      });
+    const validateScheduleAPI = async (schedule) => { // Ensure `schedule` is passed as a parameter
+      console.log(schedule)
+      console.log(JSON.stringify(schedule))
+      try {
+          const response = await fetch('http://127.0.0.1:5000/validate_matches', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(schedule), // `schedule` should be an array of match objects
+          });
   
-      if (!response.ok) {
-          throw new Error('Failed to validate schedule');
+          if (!response.ok) {
+              throw new Error(`Failed to validate schedule: ${response.status} ${response.statusText}`);
+          }
+  
+          const badMatchIndices = await response.json();
+          return badMatchIndices;
+      } catch (error) {
+          console.error("Error in validateScheduleAPI:", error);
+          throw error;
       }
+  };
   
-      const badMatchIndices = await response.json();
-      return badMatchIndices
-    };
 
     const addMatchesToDatabase = async () => {
       for (const match of schedule) {

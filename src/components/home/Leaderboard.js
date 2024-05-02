@@ -9,11 +9,14 @@ function Leaderboard() {
           .then(response => response.json())
           .then(data => {
             setLeaderboard(data);
+          })
+          .catch(error => {
+            console.error("Fetching Error:", error);
           });
       }, []);
 
     return (
-        <div className="text-center mx-auto max-w-lg border-4 border-[#4267E6] p-5 rounded-lg">
+        <div className="text-center mx-auto max-w-lg border-4 border-[#B8CFF3] p-5 rounded-lg">
             <h1 className="text-[#4267E6] text-2xl font-bold mb-5">Standings</h1>
             <img src={trophy} alt="trophy" className="h-64 mx-auto" />
             <div className="overflow-x-auto">

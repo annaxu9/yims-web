@@ -1,12 +1,13 @@
 // NavBar.js
 import { Link } from 'react-router-dom';
-import fonts from '../assets/fonts/fonts.css';
+import '../assets/fonts/fonts.css';
 import star from '../assets/icons/star.png';
 import calendar from '../assets/icons/calendar.png';
 import users from '../assets/icons/users.png';
 import bracket from '../assets/icons/bracket.png';
 import refFlag from '../assets/icons/ref-flag.png';
 import user from '../assets/icons/user.png';
+import dropdown from '../assets/icons/dropdown.png';
 
 
 function NavBar({ role }) {
@@ -86,8 +87,7 @@ function NavBar({ role }) {
             <div className="absolute top-0 left-3 h-full w-full bg-gradient-to-r from-[#4267E6] to-[#4267E6] -skew-x-12"></div>
             <Link
               to="/"
-              className="relative z-10 text-4xl font-bold bg-clip-text text-[#FFD65F] pl-2"
-              style={{ fontFamily: 'SFSportsNight' }}
+              className="relative z-10 text-4xl font-bold bg-clip-text text-[#FFD65F] pl-2 font-sport"
             >
               YIMS 
             </Link>
